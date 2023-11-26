@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th=http://www.thymeleaf.org>
+
+<head th:replace="/cascaron/template :: head">
+	<meta charset="UTF-8">
+
+	<title>Vehiculos Disponibles</title>
+</head>
+
+<body>
+	<header th:replace="/cascaron/template :: header"></header>
+
+	<div class="container">
+		<h1 style="font-family: 'MedievalSharp';">Vehiculos Disponibles</h1>
+	</div>
+	<div class="container mb-5">
+		<div class="row">
+			<th:block th:each="vehiculo, iterStat : ${vehiculo}">
+				<div class="card">
+					<div class="row g-0">
+						<div class="col-md-4">
+							<img th:src="@{'/images/' + ${vehiculo.tipo_de_vehiculo.toLowerCase() + '.jpg'}}"
+								class="card-img mt-5">
+						</div>
+						<div class="col-md-8">
+							<div class="card-body">
+								<h5 class="card-title" th:text="${vehiculo.marca}"></h5>
+								<p class="card-text"></p>
+								<ul class="list-group">
+									<li class="list-group-item">Color: <span th:text="${vehiculo.color}"></span></li>
+									<li class="list-group-item">Tipo de vehiculo: <span
+											th:text="${vehiculo.tipo_de_vehiculo}"></span></li>
+									<li class="list-group-item">Modelo: <span th:text="${vehiculo.modelo}"></span></li>
+									<li class="list-group-item">Capacidad: <span
+											th:text="${vehiculo.capacidad_de_personas}"></span></li>
+									<li class="list-group-item">Anio: <span th:text="${vehiculo.year}"></span></li>
+									<li class="list-group-item">Transmision: <span
+											th:text="${vehiculo.transmision}"></span></li>
+									<li class="list-group-item">Full Extras: <span
+											th:text="${vehiculo.full_extras}"></span></li>
+
+								</ul>
+								<div class="mt-3">
+									<a th:href="@{/views/vehiculos/create/{codigo}(codigo=${vehiculo.codigo})}"
+										class="btn btn-primary">Reservar</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</th:block>
+		</div>
+
+	</div>
+	<button id="backToTopBtn" class="btn btn-primary">Back to Top</button>
+	<footer th:replace="/cascaron/template :: footer"></footer>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var backToTopBtn = document.getElementById("backToTopBtn");
+
+        window.addEventListener("scroll", function() {
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                backToTopBtn.classList.add("show");
+            } else {
+                backToTopBtn.classList.remove("show");
+            }
+        });
+
+        backToTopBtn.addEventListener("click", function() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        });
+    });
+</script>
+</body>
+
+</html>

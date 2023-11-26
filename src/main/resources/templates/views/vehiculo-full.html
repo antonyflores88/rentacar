@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="/cascaron/template :: head">
+	<title>Update Client Information</title>
+</head>
+
+<body>
+<style>
+		.caja-exp {
+			margin-top: 75px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			font-family: 'Poppins', sans-serif;
+			/* Agrega la fuente Poppins Sans Serif */
+		}
+
+		.container {
+			width: 100%;
+			margin: auto;
+
+		}
+
+		.container-lls {
+			width: 100%;
+			margin: auto;
+			margin-bottom: 300px;
+
+		}
+
+		.text-center {
+			text-align: center;
+		}
+
+		/* Estilos adicionales para alinear los labels e inputs horizontalmente */
+
+		.form-center {
+			align-items: center;
+			display: flex;
+			justify-content: center;
+			padding-right: 50px;
+		}
+
+		form label,
+		form input {
+			display: flex;
+			margin-bottom: 10px;
+			width: 300px;
+			font-family: 'Poppins', sans-serif;
+			/* Agrega la fuente Poppins Sans Serif */
+		}
+
+		form label {
+			width: 100%;
+		}
+
+		form input {
+			width: 300px;
+			box-sizing: border-box;
+			border-radius: 20px;
+			border: 3px solid white;
+			background-color: white;
+			color: black;
+			/* Cambia el color del texto para mejorar la visibilidad */
+		}
+
+	</style>
+	<header th:replace="/cascaron/template :: header"></header>
+	
+	<div class="container mt-4">
+		<h2 th:text="${title}"></h2>
+		<form th:action="@{/vehiculofull/save}" th:object="${vehiculofull}" method="post" >
+
+
+			<input th:field="*{placa}" type="hidden">
+
+			<label for="placa">Placa:</label>
+			<input type="number" th:field="*{placa}" placeholder="EN NUMEROS NO LETRAS"/>
+
+			<label for="Marca">Marca:</label>
+			<input type="text" th:field="*{Marca}"/>
+
+			<label for="Modelo">Modelo:</label>
+			<input type="text" th:field="*{Modelo}" />
+
+			<label for="year">Año:</label>
+			<input th:field="*{year}" type="number" id="year" name="year" min="2010" max="2100" pattern="\d{4}" title="Enter a valid year (e.g., 2023)" required>
+			
+			<label for="transmision">Transmision:</label>
+			<select th:field="*{transmision}">
+				<option value="MANUAL">MANUAL</option>
+				<option value="AUTOMATIC">AUTOMATIC</option>
+			</select>
+
+			<label for="tipo_de_vehiculo">Tipo:</label>
+			<select th:field="*{tipo_de_vehiculo}">
+				<option value="SEDAN">SEDAN</option>
+				<option value="COMPACTO">COMPACTO</option>
+				<option value="SUV">SUV</option>
+				<option value="TRUCK">TRUCK</option>
+			</select>
+
+			<label for="full">Full Extras:</label>
+			<input type="text" th:field="*{full}" />
+
+			<label for="combustion">Combustible:</label>
+			<select th:field="*{combustion}">
+				<option value="GASOLINA">GASOLINA</option>
+				<option value="DIESEL">DIESEL</option>
+			</select>
+
+			<label for="capacidadPersonas">Capacidad de personas:</label>
+			<input type="text" th:field="*{capacidadPersonas}"/>
+
+			<label for="kmInicial">Kilometraje Inicial:</label>
+			<input type="text" th:field="*{kmInicial}" placeholder="EN NUMEROS NO LETRAS"/>
+
+			<label for="kmFinal">Kilometraje Final:</label>
+			<input type="text" th:field="*{kmFinal}" placeholder="EN NUMEROS NO LETRAS"/>			
+
+			<label for="seguridad">Numero de implemetos de seguridad:</label>
+			<input type="number" th:field="*{seguridad}" placeholder="EN NUMEROS NO LETRAS"/>
+
+			<label for="estado">Estado:</label>
+			<select th:field="*{estado}">
+				<option value="CREDITO">CREDITO</option>
+				<option value="PROPIO">PROPIO</option>
+			</select>
+			
+			<label for="aseguradora">Aseguradora:</label>
+			<input type="text" th:field="*{aseguradora}" />
+
+			<div class="text-body-secondary last-element-in-form mt-4" style="margin-bottom: 30px;">
+				<button type="submit" class="btn btn-primary">Update</button>
+				<a th:href="@{/clientes/adminpage}" class="btn btn-secondary">Cancelar</a>
+			</div>
+		</form>
+	</div>
+
+<footer th:replace="/cascaron/template :: footer"></footer>
+</body>
+
+
+</html>

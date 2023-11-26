@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th=http://www.thymeleaf.org>
+
+<head th:replace="/cascaron/template :: head">
+	<meta charset="UTF-8">
+	<link href="https://fonts.googleapis.com/css?family=MedievalSharp&display=swap" rel="stylesheet">
+
+	<title>Inicio</title>
+</head>
+
+<body>
+	<header th:replace="/cascaron/template :: header"></header>
+
+	<div class="container mt-4 mb-4">
+		<h3 class="text-center" style="font-family: 'MedievalSharp';">Somos tu mejor opción para la renta de vehículos
+		</h3>
+
+		<div class="container">
+			<div class="image mx-auto text-center">
+				<img src="images/cover5.png" alt="Image 1" style="width: 50%; height: auto;">
+			</div>
+			<div class="text-center mt-3">
+				<a href="/views/vehiculos/" class="btn btn-primary">Ver Vehiculos Disponibles</a>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="/cascaron/template :: footer"></footer>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="/cascaron/template :: head">
+
+	<title>Lista de Clientes</title>
+</head>
+
+<body>
+	<header th:replace="/cascaron/template :: header"></header>
+
+	<div class="container mt-3">
+		<div class="row">
+			<div class="col-md-6">
+				<div class="table-container">
+					<h2>Pre-Reservaciones</h2>
+					<div class="mb-3">
+					<a th:href="@{/clientes/adminpage}" class="btn btn-primary">Retornar</a>
+					</div>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Placa</th>
+								<th>Tipo</th>
+								<th>Edicion</th>
+							</tr>
+						</thead>
+						<tbody>
+							<!-- Itera sobre la lista de clientes -->
+							<tr th:each="carro : ${vehiculos}">
+								<td th:text="${carro.placa}"></td>
+								<td th:text="${carro.tipo_de_vehiculo}"></td>
+								<td>
+									<a th:href="@{'/vehiculofull/' + ${carro.placa}}"
+										class="btn btn-primary">Editar Vehiculo</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+</body>
+	<footer th:replace="/cascaron/template :: footer"></footer>
+
+</html>

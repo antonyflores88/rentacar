@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="/cascaron/template :: head">
+
+	<title>Cobros</title>
+</head>
+
+<body>
+<style>
+		.caja-exp {
+			margin-top: 75px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			font-family: 'Poppins', sans-serif;
+			/* Agrega la fuente Poppins Sans Serif */
+		}
+
+		.container {
+			width: 100%;
+			margin: auto;
+
+		}
+
+		.container-lls {
+			width: 100%;
+			margin: auto;
+			margin-bottom: 300px;
+
+		}
+
+		.text-center {
+			text-align: center;
+		}
+
+		/* Estilos adicionales para alinear los labels e inputs horizontalmente */
+
+		.form-center {
+			align-items: center;
+			display: flex;
+			justify-content: center;
+			padding-right: 50px;
+		}
+
+		form label,
+		form input {
+			display: flex;
+			margin-bottom: 10px;
+			width: 300px;
+			font-family: 'Poppins', sans-serif;
+			/* Agrega la fuente Poppins Sans Serif */
+		}
+
+		form label {
+			width: 100%;
+		}
+
+		form input {
+			width: 300px;
+			box-sizing: border-box;
+			border-radius: 20px;
+			border: 3px solid white;
+			background-color: white;
+			color: black;
+			/* Cambia el color del texto para mejorar la visibilidad */
+		}
+	</style>
+	<header th:replace="/cascaron/template :: header"></header>
+
+	<div class="container mt-3">
+		<div class="row">
+			<div class="col-md-6">
+				<div class="caja-exp">
+					<div class="container-sal">
+						<h2 class="text-center mb-5">Buscar Cliente</h2>
+						<form th:action="@{/clientes/buscarcliente}" method="post">
+							<label for="dui">ID del Expediente:</label>
+							<input type="text" maxlength="10" id="dui" name="dui">
+
+							<button type="submit" class="btn btn-primary">Buscar</button>
+							<a th:href="@{/clientes/adminpage}" class="btn btn-secondary">Cancelar</a>
+						</form>
+
+
+
+						<div th:if="${moroso!= null}" class="mt-4 mb-4">
+							<div class="container">
+								<h1 class="display-6 text-center mb-5">Cliente Encontrado</h1>
+								<div id="tabla-exp-prop">
+									<table class="table table-bordered">
+										<thead class="thead-light">
+											<tr>
+												<th>Numero de DUI</th>
+												<th>Anticipo</th>
+												<th>Forma de Pago</th>
+												<th>Monto Total</th>
+												<th>Totalidad Cancelada</th>
+												<th>Acciones</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td th:text="${moroso.dui}"></td>
+												<td th:text="${moroso.pagoAnticipado}"></td>
+												<td th:text="${moroso.formaPago}"></td>
+												<td th:text="${moroso.montoTotal}"></td>
+												<td th:text="${moroso.cancelacion ? 'Ya está cancelado' : moroso.cancelacion}"></td>
+												<td>
+													<a th:href="@{'/clientes/deudas/' + ${moroso.dui}}"
+														class="btn btn-primary">Editar Cancelacion</a>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<footer th:replace="/cascaron/template :: footer"></footer>
+</body>
+
+</html>

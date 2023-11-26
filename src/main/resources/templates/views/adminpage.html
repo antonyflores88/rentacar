@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="/cascaron/template :: head">
+
+	<title>Your Dashboard</title>
+</head>
+
+<body>
+	<header th:replace="/cascaron/template :: header"></header>
+
+
+
+	<div class="container mt-3">
+		<div class="row">
+			<div class="col-md-6">
+				<div class="container mt-5">
+					<div class="card" style="width: 18rem;">
+						<div class="card-body">
+							<h5 class="card-title">Pre-Reservas</h5>
+							<p class="card-text">Completar las reservas.</p>
+							<a th:href="@{/clientes/list}" class="btn btn-primary" id="preOrderLink">Ir a
+								Pre-Reservas</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-6">
+				<div class="container mt-5">
+					<div class="card" style="width: 18rem;">
+						<div class="card-body">
+							<h5 class="card-title">Vehiculos</h5>
+							<p class="card-text">Administrar vehiculos de renta.</p>
+							<a th:href="@{/vehiculofull/list}" class="btn btn-primary" id="preOrderLink">Ir a
+								Vehiculos</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="container mt-5">
+						<div class="card" style="width: 18rem;">
+							<div class="card-body">
+								<h5 class="card-title">Cobros y Pagos</h5>
+								<p class="card-text">Estados de cuenta de clientes.</p>
+								<a th:href="@{/clientes/buscarcliente}" class="btn btn-primary"
+									id="preOrderLink">Cobros</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-6">
+					<div class="container mt-5">
+						<div class="card" style="width: 18rem;">
+							<div class="card-body">
+								<h5 class="card-title">Agregar Vehiculo</h5>
+								<p class="card-text">Agregar un Vehiculo Para Renta.</p>
+								<a th:href="@{/vehiculofull/create}" class="btn btn-primary" id="preOrderLink">Ir a
+									Creacion</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container mt-5 mb-5">
+			<div class="row mt-4">
+
+			</div>
+
+		</div>
+
+	</div>
+
+
+	<footer th:replace="/cascaron/template :: footer"></footer>
+</body>
+
+</html>

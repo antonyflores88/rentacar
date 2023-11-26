@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="/cascaron/template :: head">
+	<title>Update Client Information</title>
+</head>
+
+<body>
+
+	<header th:replace="/cascaron/template :: header"></header>
+
+	<style>
+		.caja-exp {
+			margin-top: 75px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			font-family: 'Poppins', sans-serif;
+			/* Agrega la fuente Poppins Sans Serif */
+		}
+
+		.container {
+			width: 100%;
+			margin: auto;
+
+		}
+
+		.container-lls {
+			width: 100%;
+			margin: auto;
+			margin-bottom: 300px;
+
+		}
+
+		.text-center {
+			text-align: center;
+		}
+
+		/* Estilos adicionales para alinear los labels e inputs horizontalmente */
+
+		.form-center {
+			align-items: center;
+			display: flex;
+			justify-content: center;
+			padding-right: 50px;
+		}
+
+		form label,
+		form input {
+			display: flex;
+			margin-bottom: 10px;
+			width: 300px;
+			font-family: 'Poppins', sans-serif;
+			/* Agrega la fuente Poppins Sans Serif */
+		}
+
+		form label {
+			width: 100%;
+		}
+
+		form input {
+			width: 300px;
+			box-sizing: border-box;
+			border-radius: 20px;
+			border: 3px solid white;
+			background-color: white;
+			color: black;
+			/* Cambia el color del texto para mejorar la visibilidad */
+		}
+	</style>
+
+	<div class="container mt-4">
+		<h2>Update Client Information</h2>
+		<form th:action="@{/clientes/cancelacion}" th:object="${clientem}" method="post">
+
+
+			<input th:field="*{dui}" type="hidden" />
+
+			<label for="nombreSolicitante">Nombre Cliente:</label>
+			<input type="text" th:value="${cliente.nombreSolicitante}" readonly="readonly" />
+
+			<label for="dui">Numero Documento:</label>
+			<input type="text" th:value="*{dui}" readonly="readonly" />
+
+			<label for="placa">Placa Vehiculo Rentado:</label>
+			<input type="text" th:value="${cliente.Placa}" readonly="readonly" />
+
+
+			<label for="montoTotal">Monto total del alquiler:</label>
+			<input type="text" th:field="*{montoTotal}" readonly="readonly" />
+
+			<label for="fechaCancelacion">Fecha de Cancelacion:</label>
+			<input type="date" th:field="*{fechaCancelacion}" />
+
+			<label for="formaPago">Forma de pago:</label>
+			<select th:field="*{formaPago}">
+				<option value="Efectivo">Efectivo</option>
+				<option value="Tarjeta">Tarjeta</option>
+			</select>
+
+			<label for="pagoAnticipado">Anticipo:</label>
+			<input type="text" th:field="*{pagoAnticipado}" readonly="readonly" />
+
+			<label for="cancelacion">¿Esta Cancelado?</label>
+			<select id="booleanField" th:field="*{cancelacion}" >
+				<option value="true">Sí</option>
+				<option value="false">No</option>
+			</select>
+
+
+
+			<div class="text-body-secondary last-element-in-form mt-4" style="margin-bottom: 30px;">
+				<button type="submit" class="btn btn-primary">Realizar Pago</button>
+				<a th:href="@{/clientes/adminpage}" class="btn btn-secondary">Cancelar</a>
+			</div>
+		</form>
+	</div>
+
+	<footer th:replace="/cascaron/template :: footer"></footer>
+</body>
+
+
+</html>
