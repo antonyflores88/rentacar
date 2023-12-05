@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns:th=http://www.thymeleaf.org>
+
+<head>
+<meta charset="UTF-8">
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=MedievalSharp&display=swap"
+	rel="stylesheet">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<link th:href="@{/css/fondo.css}" rel="stylesheet">
+
+<title>Vehiculos Disponibles</title>
+</head>
+
+<body>
+	<header>
+		<nav
+			class="navbar navbar-expand-lg navbar-light bg-light justify-content-center">
+			<a class="navbar-brand" th:href="@{/home}">Inicio</a> <a
+				class="navbar-brand" th:href="@{/views/vehiculos/}">Autos</a>
+			<!--			<a class="navbar-brand" th:href="@{/clientes/list}">Admin</a>-->
+			<a class="navbar-brand" th:href="@{/clientes/adminpage}">Admin</a>
+			<div class="navbar-nav ml-auto">
+				<div class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#"
+						id="notificationDropdown" role="button" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false"> <i
+						class="fas fa-bell"></i>
+					</a>
+					<div class="dropdown-menu dropdown-menu-right"
+						aria-labelledby="notificationDropdown">
+						<a class="dropdown-item" href="#">Notification 1</a> <a
+							class="dropdown-item" href="#">Notification 2</a> <a
+							class="dropdown-item" href="#">Notification 3</a>
+					</div>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<div class="container">
+		<h1 style="font-family: 'MedievalSharp';">Vehiculos Disponibles</h1>
+	</div>
+	<div class="container mb-5">
+		<div class="row">
+			<th:block th:each="vehiculo, iterStat : ${vehiculo}">
+				<div class="card">
+					<div class="row g-0">
+						<div class="col-md-4">
+							<img
+								th:src="@{'/images/' + ${vehiculo.tipo_de_vehiculo.toLowerCase() + '.jpg'}}"
+								class="card-img mt-5">
+						</div>
+						<div class="col-md-8">
+							<div class="card-body">
+								<h5 class="card-title" th:text="${vehiculo.marca}"></h5>
+								<p class="card-text"></p>
+								<ul class="list-group">
+									<li class="list-group-item">Color: <span
+										th:text="${vehiculo.color}"></span></li>
+									<li class="list-group-item">Tipo de vehiculo: <span
+										th:text="${vehiculo.tipo_de_vehiculo}"></span></li>
+									<li class="list-group-item">Modelo: <span
+										th:text="${vehiculo.modelo}"></span></li>
+									<li class="list-group-item">Capacidad: <span
+										th:text="${vehiculo.capacidad_de_personas}"></span></li>
+									<li class="list-group-item">Anio: <span
+										th:text="${vehiculo.year}"></span></li>
+									<li class="list-group-item">Transmision: <span
+										th:text="${vehiculo.transmision}"></span></li>
+									<li class="list-group-item">Full Extras: <span
+										th:text="${vehiculo.full_extras}"></span></li>
+
+								</ul>
+								<div class="mt-3">
+									<a
+										th:href="@{/views/vehiculos/create/{codigo}(codigo=${vehiculo.codigo})}"
+										class="btn btn-primary">Reservar</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</th:block>
+		</div>
+
+	</div>
+	<div class="container mb-5">
+		<button id="backToTopBtn" class="btn btn-primary">Back to Top</button>
+	</div>
+
+
+	<script>
+		document.addEventListener("DOMContentLoaded", function() {
+			var backToTopBtn = document.getElementById("backToTopBtn");
+
+			window.addEventListener("scroll", function() {
+				if (document.body.scrollTop > 100
+						|| document.documentElement.scrollTop > 100) {
+					backToTopBtn.classList.add("show");
+				} else {
+					backToTopBtn.classList.remove("show");
+				}
+			});
+
+			backToTopBtn.addEventListener("click", function() {
+				document.body.scrollTop = 0;
+				document.documentElement.scrollTop = 0;
+			});
+		});
+	</script>
+
+	<footer class="text-center footer fixed-bottom">
+
+		<div>&copy; 2023 Databases Administration | Alquiler de
+			Vehiculos | Grupo 1</div>
+
+		<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+		<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+		<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+	</footer>
+</body>
+
+</html>

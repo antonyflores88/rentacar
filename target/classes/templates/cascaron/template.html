@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th=http://www.thymeleaf.org>
+
+<head>
+	<meta charset="UTF-8">
+	<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=MedievalSharp&display=swap" rel="stylesheet">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<link th:href="@{/css/fondo.css}" rel="stylesheet">
+
+	<style>
+		.card {
+    background: linear-gradient(45deg, #3498db, #36A2EB);
+    color: white;
+    transition: transform 0.3s;
+		}
+
+		.card:hover {
+			transform: scale(1.05);
+			/* Scale up on hover */
+		}
+
+		.btn-primary {
+			border-radius: 25px;
+			/* Color azul, puedes ajustar según tus preferencias */
+			color: white;
+		}
+
+		.btn-secondary {
+			border-radius: 25px;
+			background-color: #007bff;
+			/* Color azul, puedes ajustar según tus preferencias */
+			color: white;
+		}
+
+		.btn-secondary {
+			margin: auto;
+			background-color: red;
+		}
+
+		body {
+			margin: 0;
+			padding: 0;
+			font-family: 'Arial', sans-serif;
+		}
+
+		.footer {
+			background-color: #333;
+			color: white;
+			text-align: center;
+			width: 100%;
+		}
+
+		.footer a {
+			color: #61dafb;
+			text-decoration: none;
+		}
+
+	</style>
+
+</head>
+
+<body>
+	<header>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-center">
+			<a class="navbar-brand" th:href="@{/home}">Inicio</a>
+			<a class="navbar-brand" th:href="@{/views/vehiculos/}">Autos</a>
+			<!--			<a class="navbar-brand" th:href="@{/clientes/list}">Admin</a>-->
+			<a class="navbar-brand" th:href="@{/clientes/adminpage}">Admin</a>
+			<div class="navbar-nav ml-auto">
+				<div class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="notificationDropdown" role="button"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<i class="fas fa-bell"></i>
+					</a>
+					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="notificationDropdown">
+						<a class="dropdown-item" href="#">Notification 1</a>
+						<a class="dropdown-item" href="#">Notification 2</a>
+						<a class="dropdown-item" href="#">Notification 3</a>
+					</div>
+				</div>
+			</div>
+		</nav>
+	</header>
+
+
+	<footer th:fragment="footer" class="text-center footer fixed-bottom">
+		
+		<div>&copy; 2023 Databases Administration | Alquiler de Vehiculos | Grupo 1</div>
+
+		<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+	
+	</footer>
+</body>
+
+</html>
