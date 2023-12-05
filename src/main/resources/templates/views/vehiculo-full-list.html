@@ -1,13 +1,48 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="/cascaron/template :: head">
-
-	<title>Lista de Clientes</title>
+<head>
+<meta charset="UTF-8">
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=MedievalSharp&display=swap"
+	rel="stylesheet">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<link th:href="@{/css/fondo.css}" rel="stylesheet">
+<title>Lista de Clientes</title>
 </head>
 
 <body>
-	<header th:replace="/cascaron/template :: header"></header>
+	<header>
+		<nav
+			class="navbar navbar-expand-lg navbar-light bg-light justify-content-center">
+			<a class="navbar-brand" th:href="@{/home}">Inicio</a> <a
+				class="navbar-brand" th:href="@{/views/vehiculos/}">Autos</a>
+			<!--			<a class="navbar-brand" th:href="@{/clientes/list}">Admin</a>-->
+			<a class="navbar-brand" th:href="@{/clientes/adminpage}">Admin</a>
+			<div class="navbar-nav ml-auto">
+				<div class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#"
+						id="notificationDropdown" role="button" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false"> <i
+						class="fas fa-bell"></i>
+					</a>
+					<div class="dropdown-menu dropdown-menu-right"
+						aria-labelledby="notificationDropdown">
+						<a class="dropdown-item" href="#">Notification 1</a> <a
+							class="dropdown-item" href="#">Notification 2</a> <a
+							class="dropdown-item" href="#">Notification 3</a>
+					</div>
+				</div>
+			</div>
+		</nav>
+	</header>
 
 	<div class="container mt-3">
 		<div class="row">
@@ -15,7 +50,7 @@
 				<div class="table-container">
 					<h2>Pre-Reservaciones</h2>
 					<div class="mb-3">
-					<a th:href="@{/clientes/adminpage}" class="btn btn-primary">Retornar</a>
+						<a th:href="@{/clientes/adminpage}" class="btn btn-primary">Retornar</a>
 					</div>
 					<table class="table">
 						<thead>
@@ -30,10 +65,8 @@
 							<tr th:each="carro : ${vehiculos}">
 								<td th:text="${carro.placa}"></td>
 								<td th:text="${carro.tipo_de_vehiculo}"></td>
-								<td>
-									<a th:href="@{'/vehiculofull/' + ${carro.placa}}"
-										class="btn btn-primary">Editar Vehiculo</a>
-								</td>
+								<td><a th:href="@{'/vehiculofull/' + ${carro.placa}}"
+									class="btn btn-primary">Editar Vehiculo</a></td>
 							</tr>
 						</tbody>
 					</table>
@@ -42,7 +75,22 @@
 		</div>
 	</div>
 	</div>
-</body>
-	<footer th:replace="/cascaron/template :: footer"></footer>
 
+	<footer class="text-center footer fixed-bottom">
+
+		<div>&copy; 2023 Databases Administration | Alquiler de
+			Vehiculos | Grupo 1</div>
+
+		<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+		<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+		<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+	</footer>
+</body>
 </html>

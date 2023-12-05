@@ -1,122 +1,161 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="/cascaron/template :: head">
-	<title>Update Client Information</title>
+<head>
+<meta charset="UTF-8">
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=MedievalSharp&display=swap"
+	rel="stylesheet">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<link th:href="@{/css/fondo.css}" rel="stylesheet">
+<title>Update Client Information</title>
 </head>
 
 <body>
 
-	<header th:replace="/cascaron/template :: header"></header>
-
+	<header>
+		<nav
+			class="navbar navbar-expand-lg navbar-light bg-light justify-content-center">
+			<a class="navbar-brand" th:href="@{/home}">Inicio</a> <a
+				class="navbar-brand" th:href="@{/views/vehiculos/}">Autos</a>
+			<!--			<a class="navbar-brand" th:href="@{/clientes/list}">Admin</a>-->
+			<a class="navbar-brand" th:href="@{/clientes/adminpage}">Admin</a>
+			<div class="navbar-nav ml-auto">
+				<div class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#"
+						id="notificationDropdown" role="button" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false"> <i
+						class="fas fa-bell"></i>
+					</a>
+					<div class="dropdown-menu dropdown-menu-right"
+						aria-labelledby="notificationDropdown">
+						<a class="dropdown-item" href="#">Notification 1</a> <a
+							class="dropdown-item" href="#">Notification 2</a> <a
+							class="dropdown-item" href="#">Notification 3</a>
+					</div>
+				</div>
+			</div>
+		</nav>
+	</header>
 	<style>
-		.caja-exp {
-			margin-top: 75px;
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			font-family: 'Poppins', sans-serif;
-			/* Agrega la fuente Poppins Sans Serif */
-		}
+.caja-exp {
+	margin-top: 75px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-family: 'Poppins', sans-serif;
+	/* Agrega la fuente Poppins Sans Serif */
+}
 
-		.container {
-			width: 100%;
-			margin: auto;
+.container {
+	width: 100%;
+	margin: auto;
+}
 
-		}
+.container-lls {
+	width: 100%;
+	margin: auto;
+	margin-bottom: 300px;
+}
 
-		.container-lls {
-			width: 100%;
-			margin: auto;
-			margin-bottom: 300px;
+.text-center {
+	text-align: center;
+}
 
-		}
+/* Estilos adicionales para alinear los labels e inputs horizontalmente */
+.form-center {
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	padding-right: 50px;
+}
 
-		.text-center {
-			text-align: center;
-		}
+form label, form input {
+	display: flex;
+	margin-bottom: 10px;
+	width: 300px;
+	font-family: 'Poppins', sans-serif;
+	/* Agrega la fuente Poppins Sans Serif */
+}
 
-		/* Estilos adicionales para alinear los labels e inputs horizontalmente */
+form label {
+	width: 100%;
+}
 
-		.form-center {
-			align-items: center;
-			display: flex;
-			justify-content: center;
-			padding-right: 50px;
-		}
-
-		form label,
-		form input {
-			display: flex;
-			margin-bottom: 10px;
-			width: 300px;
-			font-family: 'Poppins', sans-serif;
-			/* Agrega la fuente Poppins Sans Serif */
-		}
-
-		form label {
-			width: 100%;
-		}
-
-		form input {
-			width: 300px;
-			box-sizing: border-box;
-			border-radius: 20px;
-			border: 3px solid white;
-			background-color: white;
-			color: black;
-			/* Cambia el color del texto para mejorar la visibilidad */
-		}
-	</style>
+form input {
+	width: 300px;
+	box-sizing: border-box;
+	border-radius: 20px;
+	border: 3px solid white;
+	background-color: white;
+	color: black;
+	/* Cambia el color del texto para mejorar la visibilidad */
+}
+</style>
 
 	<div class="container mt-4">
 		<h2>Update Client Information</h2>
-		<form th:action="@{/clientes/cancelacion}" th:object="${clientem}" method="post">
+		<form th:action="@{/clientes/cancelacion}" th:object="${clientem}"
+			method="post">
 
 
-			<input th:field="*{dui}" type="hidden" />
+			<input th:field="*{dui}" type="hidden" /> <label
+				for="nombreSolicitante">Nombre Cliente:</label> <input type="text"
+				th:value="${cliente.nombreSolicitante}" readonly="readonly" /> <label
+				for="dui">Numero Documento:</label> <input type="text"
+				th:value="*{dui}" readonly="readonly" /> <label for="placa">Placa
+				Vehiculo Rentado:</label> <input type="text" th:value="${cliente.Placa}"
+				readonly="readonly" /> <label for="montoTotal">Monto total
+				del alquiler:</label> <input type="text" th:field="*{montoTotal}"
+				readonly="readonly" /> <label for="fechaCancelacion">Fecha
+				de Cancelacion:</label> <input type="date" th:field="*{fechaCancelacion}" />
 
-			<label for="nombreSolicitante">Nombre Cliente:</label>
-			<input type="text" th:value="${cliente.nombreSolicitante}" readonly="readonly" />
-
-			<label for="dui">Numero Documento:</label>
-			<input type="text" th:value="*{dui}" readonly="readonly" />
-
-			<label for="placa">Placa Vehiculo Rentado:</label>
-			<input type="text" th:value="${cliente.Placa}" readonly="readonly" />
-
-
-			<label for="montoTotal">Monto total del alquiler:</label>
-			<input type="text" th:field="*{montoTotal}" readonly="readonly" />
-
-			<label for="fechaCancelacion">Fecha de Cancelacion:</label>
-			<input type="date" th:field="*{fechaCancelacion}" />
-
-			<label for="formaPago">Forma de pago:</label>
-			<select th:field="*{formaPago}">
+			<label for="formaPago">Forma de pago:</label> <select
+				th:field="*{formaPago}">
 				<option value="Efectivo">Efectivo</option>
 				<option value="Tarjeta">Tarjeta</option>
-			</select>
-
-			<label for="pagoAnticipado">Anticipo:</label>
-			<input type="text" th:field="*{pagoAnticipado}" readonly="readonly" />
-
-			<label for="cancelacion">¿Esta Cancelado?</label>
-			<select id="booleanField" th:field="*{cancelacion}" >
+			</select> <label for="pagoAnticipado">Anticipo:</label> <input type="text"
+				th:field="*{pagoAnticipado}" readonly="readonly" /> <label
+				for="cancelacion">¿Esta Cancelado?</label> <select id="booleanField"
+				th:field="*{cancelacion}">
 				<option value="true">Sí</option>
 				<option value="false">No</option>
 			</select>
 
 
 
-			<div class="text-body-secondary last-element-in-form mt-4" style="margin-bottom: 30px;">
+			<div class="text-body-secondary last-element-in-form mt-4"
+				style="margin-bottom: 30px;">
 				<button type="submit" class="btn btn-primary">Realizar Pago</button>
 				<a th:href="@{/clientes/adminpage}" class="btn btn-secondary">Cancelar</a>
 			</div>
 		</form>
 	</div>
 
-	<footer th:replace="/cascaron/template :: footer"></footer>
+	<footer class="text-center footer fixed-bottom">
+
+		<div>&copy; 2023 Databases Administration | Alquiler de
+			Vehiculos | Grupo 1</div>
+
+		<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+		<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+		<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+	</footer>
+
 </body>
 
 

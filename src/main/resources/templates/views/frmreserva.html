@@ -1,16 +1,49 @@
 <!DOCTYPE html>
 <html xmlns:th=http://www.thymeleaf.org>
 
-<head th:replace="/cascaron/template :: head">
-	<meta charset="UTF-8">
-	<link href="https://fonts.googleapis.com/css?family=MedievalSharp&display=swap" rel="stylesheet">
+<head>
+<meta charset="UTF-8">
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=MedievalSharp&display=swap"
+	rel="stylesheet">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<link th:href="@{/css/fondo.css}" rel="stylesheet">
 
-	<title>Inicio</title>
+<title>Inicio</title>
 </head>
 
 <body>
-	<header th:replace="/cascaron/template :: header"></header>
-
+	<header>
+		<nav
+			class="navbar navbar-expand-lg navbar-light bg-light justify-content-center">
+			<a class="navbar-brand" th:href="@{/home}">Inicio</a> <a
+				class="navbar-brand" th:href="@{/views/vehiculos/}">Autos</a>
+			<!--			<a class="navbar-brand" th:href="@{/clientes/list}">Admin</a>-->
+			<a class="navbar-brand" th:href="@{/clientes/adminpage}">Admin</a>
+			<div class="navbar-nav ml-auto">
+				<div class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#"
+						id="notificationDropdown" role="button" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false"> <i
+						class="fas fa-bell"></i>
+					</a>
+					<div class="dropdown-menu dropdown-menu-right"
+						aria-labelledby="notificationDropdown">
+						<a class="dropdown-item" href="#">Notification 1</a> <a
+							class="dropdown-item" href="#">Notification 2</a> <a
+							class="dropdown-item" href="#">Notification 3</a>
+					</div>
+				</div>
+			</div>
+		</nav>
+	</header>
 	<div class="container">
 
 		<div class="card mt-5">
@@ -18,7 +51,8 @@
 				<h2 th:text="${Titulo}"></h2>
 			</div>
 			<div class="card-body">
-				<form th:action="@{/views/vehiculos/reservar}" method="post" th:object="${reservacion}">
+				<form th:action="@{/views/vehiculos/reservar}" method="post"
+					th:object="${reservacion}">
 					<div>
 
 						<div class="mb-3 col-4">
@@ -26,30 +60,31 @@
 								<legend>Información del Cliente</legend>
 
 								<!-- Campos de Registrocliente -->
-								<label for="nombrecliente">NOMBRE:</label>
-								<input type="text" style="text-transform: uppercase;" autocomplete="off"
-									id="nombrecliente" name="nombrecliente" th:field="*{nombrecliente}"
-									class="form-control" placeholder="un nombre y un apellido"/>
-
-								<label for="telefono">TELEFONO:</label>
-								<input th:field="*{telefono}" type="text" id="telefono" autocomplete="off"
-									name="telefono" oninput="formatNumber(this)" class="form-control" placeholder="NUMERO TELEFONICO" />
-
-								<label for="email" style="display: block;">CORREO ELECTRÓNICO:</label>
+								<label for="nombrecliente">NOMBRE:</label> <input type="text"
+									style="text-transform: uppercase;" autocomplete="off"
+									id="nombrecliente" name="nombrecliente"
+									th:field="*{nombrecliente}" class="form-control"
+									placeholder="un nombre y un apellido" /> <label for="telefono">TELEFONO:</label>
+								<input th:field="*{telefono}" type="text" id="telefono"
+									autocomplete="off" name="telefono" oninput="formatNumber(this)"
+									class="form-control" placeholder="NUMERO TELEFONICO" /> <label
+									for="email" style="display: block;">CORREO ELECTRÓNICO:</label>
 								<div style="display: flex; align-items: center;">
-									<input type="text" autocomplete="off" id="email" name="email" required 
-									th:field="*{email}" placeholder="correElectronico@example.com" class="form-control"/>
+									<input type="text" autocomplete="off" id="email" name="email"
+										required th:field="*{email}"
+										placeholder="correElectronico@example.com"
+										class="form-control" />
 								</div>
 
-								<label for="tipodedocumento">TIPO DE DOCUMENTO:</label>
-								<select id="tipodedocumento" name="tipodedocumento" class="form-control">
+								<label for="tipodedocumento">TIPO DE DOCUMENTO:</label> <select
+									id="tipodedocumento" name="tipodedocumento"
+									class="form-control">
 									<option value="DUI">DUI</option>
 									<option value="PASAPORTE">PASAPORTE</option>
-								</select>
-
-								<label for="numerodedui">NUMERO DE DOCUMENTO:</label>
-								<input type="text" autocomplete="off" id="numerodedui" name="numerodedui"
-									th:field="*{numerodedui}" class="form-control" oninput="validateDocumento(this)"
+								</select> <label for="numerodedui">NUMERO DE DOCUMENTO:</label> <input
+									type="text" autocomplete="off" id="numerodedui"
+									name="numerodedui" th:field="*{numerodedui}"
+									class="form-control" oninput="validateDocumento(this)"
 									placeholder="12345678-9" />
 							</fieldset>
 						</div>
@@ -59,7 +94,8 @@
 						<div class="card">
 							<div class="row g-0">
 								<div class="col-md-4">
-									<img th:src="@{'/images/' + ${vehiculo.tipo_de_vehiculo.toLowerCase()} + '.jpg'}"
+									<img
+										th:src="@{'/images/' + ${vehiculo.tipo_de_vehiculo.toLowerCase()} + '.jpg'}"
 										class="card-img mt-5" />
 								</div>
 								<div class="col-md-8">
@@ -67,20 +103,22 @@
 										<h5 class="card-title" th:text="${vehiculo.marca}"></h5>
 										<p class="card-text"></p>
 										<ul class="list-group">
-											<li class="list-group-item">Color: <span th:text="${vehiculo.color}"></span>
+											<li class="list-group-item">Color: <span
+												th:text="${vehiculo.color}"></span>
 											</li>
 											<li class="list-group-item">Tipo de vehículo: <span
-													th:text="${vehiculo.tipo_de_vehiculo}"></span></li>
+												th:text="${vehiculo.tipo_de_vehiculo}"></span></li>
 											<li class="list-group-item">Modelo: <span
-													th:text="${vehiculo.modelo}"></span></li>
+												th:text="${vehiculo.modelo}"></span></li>
 											<li class="list-group-item">Capacidad: <span
-													th:text="${vehiculo.capacidad_de_personas}"></span></li>
-											<li class="list-group-item">Año: <span th:text="${vehiculo.year}"></span>
+												th:text="${vehiculo.capacidad_de_personas}"></span></li>
+											<li class="list-group-item">Año: <span
+												th:text="${vehiculo.year}"></span>
 											</li>
 											<li class="list-group-item">Transmisión: <span
-													th:text="${vehiculo.transmision}"></span></li>
+												th:text="${vehiculo.transmision}"></span></li>
 											<li class="list-group-item">Full Extras: <span
-													th:text="${vehiculo.full_extras}"></span></li>
+												th:text="${vehiculo.full_extras}"></span></li>
 										</ul>
 									</div>
 								</div>
@@ -88,7 +126,8 @@
 						</div>
 					</div>
 					<!-- Campo oculto para almacenar el código del vehículo -->
-					<input type="hidden" id="codigoVehiculo" name="codigoVehiculo" th:value="${vehiculo.codigo}" />
+					<input type="hidden" id="codigoVehiculo" name="codigoVehiculo"
+						th:value="${vehiculo.codigo}" />
 
 					<div class="mt-3">
 						<input type="submit" value="Crear reserva" class="btn btn-primary" />
@@ -100,7 +139,6 @@
 		</div>
 	</div>
 
-	<footer th:replace="/cascaron/template :: footer"></footer>
 	<script>
 		function formatNumber(input) {
 			input.value = input.value.replace(/\D/g, ''); // Remove non-digit characters
@@ -116,21 +154,36 @@
 	</script>
 
 	<script>
-    function validateDocumento(input) {
-    	input.value = input.value.replace(/\D/g, ''); // Remove non-digit characters
+		function validateDocumento(input) {
+			input.value = input.value.replace(/\D/g, ''); // Remove non-digit characters
 
-        var firstEight = input.value.slice(0, 8);
-        var lastDigit = input.value.slice(8, 9); // Tomar el dígito adicional
+			var firstEight = input.value.slice(0, 8);
+			var lastDigit = input.value.slice(8, 9); // Tomar el dígito adicional
 
-        if (lastDigit) {
-            // Si se ha ingresado el dígito adicional, formatear el número
-            var formatted = firstEight + '-' + lastDigit;
-            input.value = formatted;
-        }
-    }
-</script>
+			if (lastDigit) {
+				// Si se ha ingresado el dígito adicional, formatear el número
+				var formatted = firstEight + '-' + lastDigit;
+				input.value = formatted;
+			}
+		}
+	</script>
+
+	<footer class="text-center footer fixed-bottom">
+
+		<div>&copy; 2023 Databases Administration | Alquiler de
+			Vehiculos | Grupo 1</div>
+
+		<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+		<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+		<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 
+	</footer>
 
 
 

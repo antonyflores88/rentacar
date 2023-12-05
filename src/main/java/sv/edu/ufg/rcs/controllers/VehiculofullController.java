@@ -49,7 +49,6 @@ public class VehiculofullController {
 	    
 	    @PostMapping("/save")
 	    public String saveOrUpdateCliente(@ModelAttribute Vehiculofull vehiculofull) {
-	    	vehiculofullService.save(vehiculofull);
 	        return "redirect:/vehiculofull/list";  // Redirige a la lista de clientes después de guardar uno nuevo.
 	    }
 

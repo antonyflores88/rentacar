@@ -1,12 +1,41 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="/cascaron/template :: head">
+<head>
+	<meta charset="UTF-8">
+	<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=MedievalSharp&display=swap" rel="stylesheet">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<link th:href="@{/css/fondo.css}" rel="stylesheet">
 	<title>Update Client Information</title>
 </head>
 
 <body>
-<style>
+
+	<header>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-center">
+			<a class="navbar-brand" th:href="@{/home}">Inicio</a> <a class="navbar-brand"
+				th:href="@{/views/vehiculos/}">Autos</a>
+			<!--			<a class="navbar-brand" th:href="@{/clientes/list}">Admin</a>-->
+			<a class="navbar-brand" th:href="@{/clientes/adminpage}">Admin</a>
+			<div class="navbar-nav ml-auto">
+				<div class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="notificationDropdown" role="button"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-bell"></i>
+					</a>
+					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="notificationDropdown">
+						<a class="dropdown-item" href="#">Notification 1</a> <a class="dropdown-item"
+							href="#">Notification 2</a> <a class="dropdown-item" href="#">Notification 3</a>
+					</div>
+				</div>
+			</div>
+		</nav>
+	</header>
+
+	<style>
 		.caja-exp {
 			margin-top: 75px;
 			display: flex;
@@ -19,14 +48,12 @@
 		.container {
 			width: 100%;
 			margin: auto;
-
 		}
 
 		.container-lls {
 			width: 100%;
 			margin: auto;
 			margin-bottom: 300px;
-
 		}
 
 		.text-center {
@@ -34,7 +61,6 @@
 		}
 
 		/* Estilos adicionales para alinear los labels e inputs horizontalmente */
-
 		.form-center {
 			align-items: center;
 			display: flex;
@@ -64,29 +90,31 @@
 			color: black;
 			/* Cambia el color del texto para mejorar la visibilidad */
 		}
-
 	</style>
-	<header th:replace="/cascaron/template :: header"></header>
-	
+
 	<div class="container mt-4">
 		<h2 th:text="${title}"></h2>
-		<form th:action="@{/vehiculofull/save}" th:object="${vehiculofull}" method="post" >
+		<form th:object="${vehiculofull}" >
 
 
 			<input th:field="*{placa}" type="hidden">
 
 			<label for="placa">Placa:</label>
-			<input type="number" th:field="*{placa}" placeholder="EN NUMEROS NO LETRAS"/>
+			<input type="number" th:field="*{placa}" placeholder="EN NUMEROS NO LETRAS" oninput="validarNumeros(this)"
+				autocomplete="off" />
 
 			<label for="Marca">Marca:</label>
-			<input type="text" th:field="*{Marca}"/>
+			<input type="text" th:field="*{Marca}" style="text-transform: uppercase;" autocomplete="off"
+				maxlength="10" />
 
 			<label for="Modelo">Modelo:</label>
-			<input type="text" th:field="*{Modelo}" />
+			<input type="text" th:field="*{Modelo}" style="text-transform: uppercase;" autocomplete="off"
+				maxlength="10" />
 
 			<label for="year">Año:</label>
-			<input th:field="*{year}" type="number" id="year" name="year" min="2010" max="2100" pattern="\d{4}" title="Enter a valid year (e.g., 2023)" required>
-			
+			<input th:field="*{year}" type="number" id="year" name="year" min="2010" max="2100" pattern="\d{4}"
+				title="Enter a valid year (e.g., 2023)" required>
+
 			<label for="transmision">Transmision:</label>
 			<select th:field="*{transmision}">
 				<option value="MANUAL">MANUAL</option>
@@ -102,7 +130,10 @@
 			</select>
 
 			<label for="full">Full Extras:</label>
-			<input type="text" th:field="*{full}" />
+			<select th:field="*{full}">
+				<option value="SI">SI</option>
+				<option value="NO">NO</option>
+			</select>
 
 			<label for="combustion">Combustible:</label>
 			<select th:field="*{combustion}">
@@ -111,25 +142,29 @@
 			</select>
 
 			<label for="capacidadPersonas">Capacidad de personas:</label>
-			<input type="text" th:field="*{capacidadPersonas}"/>
+			<input type="number" th:field="*{capacidadPersonas}" autocomplete="off" oninput="validarNumeros(this)" />
 
 			<label for="kmInicial">Kilometraje Inicial:</label>
-			<input type="text" th:field="*{kmInicial}" placeholder="EN NUMEROS NO LETRAS"/>
+			<input type="number" th:field="*{kmInicial}" placeholder="EN NUMEROS NO LETRAS" autocomplete="off"
+				oninput="validarNumeros(this)" />
 
 			<label for="kmFinal">Kilometraje Final:</label>
-			<input type="text" th:field="*{kmFinal}" placeholder="EN NUMEROS NO LETRAS"/>			
+			<input type="number" th:field="*{kmFinal}" placeholder="EN NUMEROS NO LETRAS" autocomplete="off"
+				oninput="validarNumeros(this)" />
 
 			<label for="seguridad">Numero de implemetos de seguridad:</label>
-			<input type="number" th:field="*{seguridad}" placeholder="EN NUMEROS NO LETRAS"/>
+			<input type="number" th:field="*{seguridad}" placeholder="EN NUMEROS NO LETRAS" autocomplete="off"
+				oninput="validarNumeros(this)" />
 
 			<label for="estado">Estado:</label>
 			<select th:field="*{estado}">
 				<option value="CREDITO">CREDITO</option>
 				<option value="PROPIO">PROPIO</option>
 			</select>
-			
+
 			<label for="aseguradora">Aseguradora:</label>
-			<input type="text" th:field="*{aseguradora}" />
+			<input type="text" th:field="*{aseguradora}" style="text-transform: uppercase;" autocomplete="off"
+				maxlength="15" />
 
 			<div class="text-body-secondary last-element-in-form mt-4" style="margin-bottom: 30px;">
 				<button type="submit" class="btn btn-primary">Update</button>
@@ -138,7 +173,26 @@
 		</form>
 	</div>
 
-<footer th:replace="/cascaron/template :: footer"></footer>
+	<footer class="text-center footer fixed-bottom">
+
+		<div>&copy; 2023 Databases Administration | Alquiler de
+			Vehiculos | Grupo 1</div>
+
+		<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+	</footer>
+
+	<script>
+		function validarNumeros(input) {
+			input.value = input.value.replace(/\D/g, '').slice(0, 5);
+		}
+	</script>
+
 </body>
 
 
